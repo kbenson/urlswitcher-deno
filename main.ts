@@ -8,7 +8,7 @@ function die(msg:string, exit=1) {
 
 // Parse args
 const homeDir = Deno.env.get("HOME") || Deno.env.get("USERPROFILE");
-const configDefaultLocation = `${homeDir}/.urlswitch.ini`;
+const configDefaultLocation = `${homeDir}/.urlswitcher.ini`;
 const parseOpts = {
     "default": { "config": configDefaultLocation, "verbose": false },
     "boolean": ["help", "verbose"],
@@ -17,7 +17,7 @@ const parseOpts = {
 const ARGS = parseArgs(Deno.args, parseOpts);
 const VERBOSE  = ARGS.verbose;
 //VERBOSE && console.dir(ARGS);
-if ( ARGS.help ) die('Usage: urlswitch [--config CONFIG.INI] [--help] URL')
+if ( ARGS.help ) die('Usage: urlswitcher [--config CONFIG.INI] [--help] URL')
 
 // Parse argument URL
 const targetUrl = <string>ARGS._[0];
