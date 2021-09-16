@@ -1,4 +1,4 @@
-import { parse as parseArgs } from "https://deno.land/std/flags/mod.ts";
+import { parse as parseArgs } from "https://deno.land/std@0.107.0/flags/mod.ts";
 import { parse as parseIni } from "https://deno.land/x/ini@v2.1.0/mod.ts";
 
 function die(msg:string, exit=1) {
@@ -7,8 +7,10 @@ function die(msg:string, exit=1) {
 }
 
 // Parse args
+const homeDir = Deno.env.get("HOME") || Deno.env.get("USERPROFILE");
+const configDefaultLocation = `${homeDir}/.urlswitch.ini`;
 const parseOpts = {
-    "default": { "config": "./urlswitch.ini", "verbose": false },
+    "default": { "config": configDefaultLocation, "verbose": false },
     "boolean": ["help", "verbose"],
     "alias": { "c": "config", "h": "help", "v": "verbose" },
 };
